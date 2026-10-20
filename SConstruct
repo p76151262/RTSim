@@ -21,6 +21,12 @@ AddOption('--build-type', dest='build_type', type='choice',
 #
 env = Environment(ENV = os.environ)
 
+if 'CC' in ARGUMENTS:
+    env['CC'] = ARGUMENTS['CC']
+
+if 'CXX' in ARGUMENTS:
+    env['CXX'] = ARGUMENTS['CXX']
+
 build_type = GetOption("build_type")
 
 if build_type == None or build_type == "fast":
@@ -264,5 +270,3 @@ NVMainSourceType(final_bin, "Program")
 #  Build each of the programs with the corresponding source list.
 #
 env.Program(final_bin, src_list) 
-
-
